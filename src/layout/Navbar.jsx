@@ -63,6 +63,10 @@ const Navbar = () => {
                          </NavLink>
                     </li>
                     <li>    
+                         <NavLink to="/dawa"  className="hover:text-gray-200">DAWA og map
+                         </NavLink>
+                    </li>
+                    <li>    
                          <NavLink to="/news"  className="hover:text-gray-200">Nyheder
                          </NavLink>
                     </li>

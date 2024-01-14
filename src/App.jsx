@@ -22,7 +22,7 @@ import ReviewsViborg from './viborghaveservice/ReviewsViborg';
  import SliderDataReviews from './viborghaveservice/SliderDataReviews';
 //  import PostCreate from './viborghaveservice/PostCreate'
 //  import PostEdit from './viborghaveservice/PostEdit'
-
+import Dawa from './openweather/Dawa';
 
 
 
@@ -58,6 +58,7 @@ function App () {
    
      {/* ---------------- VEJRET ---------------- */}
      <Route path="openweather" element={<Vejret />} />
+     <Route path="dawa" element={<Dawa />} />
     
         {/* ---------------- NYHEDER---------------- */}
         <Route path="news" element={<Nyheder/>} />
