@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import useRequestData from "../hooks/useRequestData";
+import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 
 // import parse from 'react-html-parser'
@@ -50,7 +51,7 @@ const HomeViborg = () => {
 
   return (
     <div>
-     <h1>{data && data.title}</h1>
+     <h1>"Velkommen til Viborg Haveservice"</h1>
 
        { isLoading && <Loader/>} 
 
@@ -58,10 +59,11 @@ const HomeViborg = () => {
 
        {data && <div dangerouslySetInnerHTML={createMarkup(data.content)} />}
 
-          {/* Button to see all services */}
-      <button onClick={handleSeeAllServicesClick}>
+          {/* Button to see all services, wrapped in Link*/}
+
+      {/* <button onClick={handleSeeAllServicesClick}>
         {showAllServices ? "Skjul Alle Ydelser" : "Se Alle Ydelser"} 
-      </button>
+      </button> */}
 
      
       {dataServices && dataServices.slice(0, 2).reverse().map((serviceItem) => (
@@ -73,6 +75,7 @@ const HomeViborg = () => {
             <div>
               <h2>{serviceItem.title}</h2>
               <p>{serviceItem.content}</p>
+            <Link to="/adminedit/" className='btn'>Se Alle Ydelser</Link>
             </div>
           </div>
         ))} 

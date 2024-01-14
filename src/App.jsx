@@ -16,9 +16,11 @@ import Nyheder from './news/Nyheder';
 import Energidata from './energydata/Energidata';
 
 import HomeViborg from './viborghaveservice/HomeViborg';
-import AboutEditViborg from './viborghaveservice/AboutEditViborg';
+import AdminEdit from './viborghaveservice/AdminEdit';
+
 import ReviewsViborg from './viborghaveservice/ReviewsViborg';
-import AdminReviewsViborg from './viborghaveservice/AdminReviewsViborg';
+import SliderDataReviews from './viborghaveservice/SliderDataReviews';
+
 
 
 
@@ -44,9 +46,10 @@ function App () {
 
      {/* ---------------- VIBORGHAVESERVICE ---------------- */}
      <Route path="homeviborg" element={<HomeViborg/>} />
-     <Route path="abouteditviborg" element={<AboutEditViborg/>} />
+     <Route path="adminedit" element={<AdminEdit/>} />
      <Route path="reviewsviborg" element={<ReviewsViborg/>} />
-     <Route path="adminreviewsviborg" element={<AdminReviewsViborg/>} />
+     <Route path="sliderdatareviews" element={<SliderDataReviews/>} />
+  
    
    
      {/* ---------------- VEJRET ---------------- */}

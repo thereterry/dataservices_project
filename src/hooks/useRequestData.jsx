@@ -24,6 +24,8 @@ const useRequestData = () => {
 
       try {
         let response 
+        console.log(bodydata);
+        // console.log(method);
         switch (method) {
           case "GET":
            response = await axios.get(apiurl, { headers: headers, body : null, params: params} );
@@ -41,15 +43,17 @@ const useRequestData = () => {
                   response = await axios.patch(apiurl, bodydata, { headers,params } )
                   break
 
-                  case "DELETE":
+                case "DELETE":
                     response = await axios.delete(apiurl, { headers,params })
                     break
 
-                    default: 
+                  default: 
                     throw new Error ("Invalid method- GET, POST ,PATCH ,DELETE  was expected")
         }
   
+        
         if (response.data) {
+          console.log(response.data);
           setData(response.data);
           setError(null);
 
