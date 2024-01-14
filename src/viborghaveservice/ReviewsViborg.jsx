@@ -18,6 +18,11 @@ const ReviewsViborg = () => {
 
   const { data, isLoading, error, makeRequest }   = useRequestData();
 
+
+  const createMarkup = (htmlString) => {
+    return { __html: htmlString };
+  };
+
   const backgroundStyle = {
     backgroundImage: `url('/testimonials-bg.jpg')`, // Assuming the image is in the `public` folder
     backgroundSize: 'cover', // This will ensure that your background covers the whole div
@@ -43,6 +48,9 @@ const ReviewsViborg = () => {
       { isLoading && <Loader/>} 
 
       { error && <h2>Error ...</h2>}
+
+
+      {data && <div dangerouslySetInnerHTML={createMarkup(data.content)} />}
 
   
     </div>

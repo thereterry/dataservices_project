@@ -49,7 +49,7 @@ const handleSubmit = e => {
         dataPUT && dataPUT.about &&
         <div className='bg-blue-100 shadow-xl card'>
           <div className='card-boy'>
-          <h2>Aboutus er rettet: </h2> 
+          <h2>About Us er rettet: </h2> 
             <p>Title: {dataPUT.about.title}</p>
             <p>Content: {dataPUT.about.content}</p>
           </div>
@@ -77,7 +77,7 @@ const handleSubmit = e => {
 
         </textarea>
 
-        <button type='submit' className='btn_submit'> Ret Post</button>
+        <button type='submit' className='btn_submit'>Ret Post</button>
       </form>
 
     </div>

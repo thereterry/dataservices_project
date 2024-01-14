@@ -1,72 +1,97 @@
-import React, { useState , useEffect} from 'react'
-import useRequestData from "../hooks/useRequestData";
-import Loader from "../components/Loader";
+import React, { useState,useEffect } from 'react'
+import {  useParams } from 'react-router-dom'
+import useRequestData from '../hooks/useRequestData'
+import Error from '../components/Error'
 import { Link } from "react-router-dom";
-
+import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 const SliderDataReviews = () => {
+  
 
-    const { data, isLoading, error, makeRequest }   = useRequestData();   //GET
+    const { data, isLoading, error, makeRequest } = useRequestData()  //GET
 
-    useEffect(()=> {
-        makeRequest("http://localhost:5023/reviews");
-      },[])
+    const { data: dataPUT, isLoading: isLoadingPUT , error: errorPUT, makeRequest: makeRequestPUT } = useRequestData()  //PUT
 
-    // const { data: dataDelete, isLoading: isLoadingDelete, error: errorDelete, makeRequest: makeRequestDelete } = useRequestData();   
+    const { data: dataDelete, isLoading: isLoadingDelete, error: errorDelete, makeRequest: makeRequestDelete } = useRequestData();
 
-    const [ title, setTitle ] = useState("")
-    const [ body, setBody ] = useState("")
+    const [ author, setAuthor ] = useState( "")
+    const [ content, setContent ] = useState( "")
     const [ userId, setUserID ] = useState("")
 
 
-    const handleSubmit = e => {
-    //     // console.log("tester")
-       e.preventDefault();   //VIGTIGT
+    useEffect(()=> {
+        makeRequest( "http://localhost:5023/reviews"   )
+    }, [ ])
 
-     const nyPost = { title, body, userId }
 
-     makeRequest( "http://localhost:5023/reviews/posts" , "PUT", nyPost)
+    useEffect(()=> {
 
-     }
+        if(data) {
+            setAuthor( data.author)
+            setContent( data.content)
+        }
+      }, [ data ])
+      
+
+      const handleSubmit = e => {
+        // console.log("tester")
+        e.preventDefault();   //VIGTIG!! Undgå at siden genindlæs -tømmer alt i state mv.!
+        const rettePost = { title, content }
+      
+        makeRequestPUT( "http://localhost:5023/reviews/admin/5f58f83089fef55ec40aa587", "PUT", rettePost) 
+      
+      }
+
+    
   return (
     <div>
-      <h1>Admin af Sliderdata Reviews</h1>
+      <h1>Admin af sliderdata/reviews</h1>
+        { error ||  errorPUT && <Error/>}
+        { isLoading ||  isLoadingPUT && <Loader/> }
 
-        {/* {
-         data && <h2>Ny er oprettet- den fik ID : { data.id }</h2>
-        } */}
+        { dataDelete && <h2>Du har netop slettet en Reviews</h2> }
 
-            <form className='form-control' onSubmit={ handleSubmit }>
 
-                <label htmlFor='inputTitle'>Title</label>
-                <input id="inputTitle" 
-                type="text" 
-                onInput= { e => setTitle( e.target.value ) }
-                value={ title }
-                required placeholder='Titel' 
-                className='input'
+        <table className="table table-zebra">
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>AUTHOR</td>
+            <td>RET</td>
+            <td>SLET</td>
+             <td><Link to={"/postcreate/"} className="btn">Create</Link></td> 
+          </tr>
+        </thead>
+        
+        <tbody>
+            {
+            data && data.map(review =>       
+                <div>
+                    <br />
+                    <td>{review.author}</td>
+                    <td>{review.content}</td>     
+                    <td>
+                    <Link to={"/postedit/" + review.id} className="btn">
+                        <FaEdit size= "2em" color= "darkgreen"  />
+                    </Link>
+                </td>
+                    <td>
+                        <button onClick={() => handleDelete(p.id, p.title)}>
+                        <FaTrash size="2em" color="darkred" className="cursor-pointer"/>
+                        </button>
+                    </td>     
+                </div>
+        )}
+            
+            </tbody>
+        </table>
+       
 
-                />
+              
 
-                <label>Body</label>
-                <textarea id = "txBody" 
-                value={ body }
-                required placeholder='body' 
-                className='textarea'>
-
-                </textarea>
-
-                <label>Id på user</label>
-                <input id = "txtUser" 
-                value={ userId }
-                type="number"
-                placeholder='User Id' 
-                className='number' />
-
-                <button type='submit' className='btn_submit'>Opret Ny Post</button>
-            </form>
-        </div>
-    )
-    return { data, isLoading, error, makeRequest };
+    </div>
+  )
+  return { data, isLoading, error, makeRequest };
 }
 
 export default SliderDataReviews
+

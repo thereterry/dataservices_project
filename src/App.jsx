@@ -11,7 +11,7 @@ import LayoutAdmin from './Layout/ADMIN/LayoutAdmin'
 import HomeAdmin from './views/ADMIN/HomeAdmin'
 import News from './views/News';
 
-import vejret from './weather/Vejret'
+import Vejret from './openweather/vejret';
 import Nyheder from './news/Nyheder';
 import Energidata from './energydata/Energidata';
 
@@ -19,7 +19,9 @@ import HomeViborg from './viborghaveservice/HomeViborg';
 import AdminEdit from './viborghaveservice/AdminEdit';
 
 import ReviewsViborg from './viborghaveservice/ReviewsViborg';
-import SliderDataReviews from './viborghaveservice/SliderDataReviews';
+ import SliderDataReviews from './viborghaveservice/SliderDataReviews';
+//  import PostCreate from './viborghaveservice/PostCreate'
+//  import PostEdit from './viborghaveservice/PostEdit'
 
 
 
@@ -49,11 +51,13 @@ function App () {
      <Route path="adminedit" element={<AdminEdit/>} />
      <Route path="reviewsviborg" element={<ReviewsViborg/>} />
      <Route path="sliderdatareviews" element={<SliderDataReviews/>} />
+     {/* <Route path="postcreate" element={ <PostCreate/> } />  */}
+     {/* <Route path="/postedit/:postID" element={ <PostEdit/> } /> */}
   
    
    
      {/* ---------------- VEJRET ---------------- */}
-     <Route path="weather" element={<vejret />} />
+     <Route path="openweather" element={<Vejret />} />
     
         {/* ---------------- NYHEDER---------------- */}
         <Route path="news" element={<Nyheder/>} />

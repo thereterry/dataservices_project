@@ -8,6 +8,7 @@ import Loader from "../components/Loader";
 const HomeViborg = () => {
 
   const { data, isLoading, error, makeRequest }   = useRequestData();
+
   const { data:dataServices, isLoading:isLoadingServices,error:errorServices,makeRequest:makeRequestServices }   = useRequestData();
 
   const [services, setServices] = useState([]);
@@ -50,40 +51,51 @@ const HomeViborg = () => {
   
 
   return (
-    <div>
-     <h1>"Velkommen til Viborg Haveservice"</h1>
+    <div className='flex flex-wrap md:flex-nowrap'>
+      <div className='md:w-1/2'>
+          <h1 className='text-3xl mb-4'>
+              <span className="font-semibold">Velkommen til</span> 
+              <span className="font-bold" style={{color: "#70AB04" }}> Viborg <br /> Haveservice</span>
+          </h1>
+            {data && <div dangerouslySetInnerHTML={createMarkup(data.content)} />}
+      </div>
+      
 
        { isLoading && <Loader/>} 
 
-       { error && <h2>Error ...</h2>}
-
-       {data && <div dangerouslySetInnerHTML={createMarkup(data.content)} />}
-
-          {/* Button to see all services, wrapped in Link*/}
-
-      {/* <button onClick={handleSeeAllServicesClick}>
-        {showAllServices ? "Skjul Alle Ydelser" : "Se Alle Ydelser"} 
-      </button> */}
-
-     
-      {dataServices && dataServices.slice(0, 2).reverse().map((serviceItem) => (
+       { error && <h2 className='text-2xl text-red-600'>Error ...</h2>}
    
-          <div key={serviceItem._id}>
+   
+     
+      <div className='className="flex justify-end space-x-4 p-2'>
+        {dataServices && dataServices.slice(0, 2).reverse().map((serviceItem) => (
+          
+          <div key={serviceItem._id} className="p-2">
             <figure>
-               <img src={`http://localhost:5023/images/${serviceItem.image}`} alt={serviceItem.title} />
-          </figure>
+                <img src={`http://localhost:5023/images/${serviceItem.image}`} alt={serviceItem.title}  />
+           </figure>
             <div>
-              <h2>{serviceItem.title}</h2>
-              <p>{serviceItem.content}</p>
-            <Link to="/adminedit/" className='btn'>Se Alle Ydelser</Link>
-            </div>
+           <figcaption>
+                    <h2 className="text-xl font-semibold mt-2">{serviceItem.title}</h2>
+                    <p className="text-sm mt-1">{serviceItem.content}</p>
+                </figcaption>
+           </div> 
+               
+        
+
+               <div className='px-6 py-4'>
+              <Link to="/adminedit/" className='btn mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Se Alle Ydelser</Link>
+              </div> 
           </div>
         ))} 
-     
+      </div>
+    
+
+     </div>
+   
 
 
  
-    </div>
   )
 }
 

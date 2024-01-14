@@ -6,7 +6,7 @@ const Navbar = () => {
     return (
 
 
-        <nav className='bg-blue-500 p-4 shadwo-md'>
+        <nav className='bg-green-500 p-4'>
             <div className='container mx-auto flex justify-between items-center'>
                
 
@@ -46,11 +46,6 @@ const Navbar = () => {
                     </NavLink>
                     </li>
                     <li>
-                    <NavLink to="/abouteditviborg">
-                     About Edit- Viborg
-                    </NavLink>
-                    </li>
-                    <li>
                     <NavLink to="/reviewsviborg">
                     Reviews-Viborg
                     </NavLink>
@@ -64,7 +59,7 @@ const Navbar = () => {
                   
                   
                     <li>    
-                         <NavLink to="/weather"  className="hover:text-gray-200">Vejret
+                         <NavLink to="/openweather"  className="hover:text-gray-200">Vejret
                          </NavLink>
                     </li>
                     <li>    
