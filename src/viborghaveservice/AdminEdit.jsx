@@ -10,6 +10,7 @@ const AdminEdit = () => {
   const { postID } = useParams()
 
   const { data, isLoading, error, makeRequest } = useRequestData()  //GET
+
   const { data: dataPUT, isLoading: isLoadingPUT , error: errorPUT, makeRequest: makeRequestPUT } = useRequestData()  //PUT
 
   const [ title, setTitle ] = useState( "")
@@ -28,7 +29,7 @@ useEffect(()=> {
 }, [ data ])
 
 const handleSubmit = e => {
-  // console.log("tester")
+ 
   e.preventDefault();   //VIGTIG!! Undgå at siden genindlæs -tømmer alt i state mv.!
   const rettePost = { title, content }
 
@@ -37,7 +38,7 @@ const handleSubmit = e => {
 }
   return (
   
-    <div>
+    <div className='container mx-auto p-4'>
       <h1>Admin- Edit/Update</h1>
 
       { error ||  errorPUT && <Error/>}
@@ -47,38 +48,42 @@ const handleSubmit = e => {
    
       {
         dataPUT && dataPUT.about &&
-        <div className='bg-blue-100 shadow-xl card'>
-          <div className='card-boy'>
-          <h2>About Us er rettet: </h2> 
-            <p>Title: {dataPUT.about.title}</p>
-            <p>Content: {dataPUT.about.content}</p>
-          </div>
+        <div className='bg-blue-100 shadow-xl p-4 rounded-lg mb-6'>
+          <h2 className='text-lg font-semibold'>About Us er rettet: </h2> 
+            <p><strong>Title:</strong>{dataPUT.about.title}</p>
+            <p><strong>Content: {dataPUT.about.content}</strong></p>
+         
          
         </div>
       }
-      <form className='form-control' onSubmit={ handleSubmit }>
 
-        <label htmlFor='inputTitle'>Title</label>
-        <input id="inputTitle" 
-        type="text" 
-        onInput= { e => setTitle( e.target.value ) }
-        value={ title }
-        required placeholder='Titel' 
-        className='w-full max-w-xs input input-bordered'
+      <div>
+          <form className='space-y-4' onSubmit={ handleSubmit }>
 
-        />
+            <label htmlFor='inputTitle' className='block text-sm font-medium text-gray-700'>Title</label>
+            <input id="inputTitle" 
+            type="text" 
+            onInput= { e => setTitle( e.target.value ) }
+            value={ title }
+            required placeholder='Titel' 
+            className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500'   />
+          </form>
+      </div>
+      <div>
+          <label htmlFor='txtContent' className='block text-sm font-medium text-gray-700'>Content</label>
+            <textarea id = "txtContent" 
+            onInput={ e => setContent(e.target.value) }
+            value={ content }
+            required placeholder='content' 
+            className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border indigo-500'>
+            </textarea>
+      </div>
+    
 
-        <label htmlFor='txtContent' className='mt-4'>Content</label>
-        <textarea id = "txtContent" 
-        onInput={ e => setContent(e.target.value) }
-        value={ content }
-        required placeholder='content' 
-        className='textarea'>
+        
 
-        </textarea>
-
-        <button type='submit' className='btn_submit'>Ret Post</button>
-      </form>
+        <button type='submit' className='px-4 py-2 bg-green-500 hover:bg-blue-700 text-white font-bold rounded-lg shadow'>Ret Post</button>
+   
 
     </div>
   )

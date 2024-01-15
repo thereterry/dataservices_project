@@ -3,7 +3,7 @@ import useRequestData from "../hooks/useRequestData";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 
-// import parse from 'react-html-parser'
+
 
 const HomeViborg = () => {
 
@@ -12,7 +12,11 @@ const HomeViborg = () => {
   const { data:dataServices, isLoading:isLoadingServices,error:errorServices,makeRequest:makeRequestServices }   = useRequestData();
 
   const [services, setServices] = useState([]);
+
   const [showAllServices, setShowAllServices] = useState(false);
+
+
+
 
 
      useEffect(()=> {
@@ -23,9 +27,7 @@ const HomeViborg = () => {
       try {
          const response = await makeRequestServices("http://localhost:5023/services");
          console.log(dataServices);   
-        // if (response && response.data) {
-        //   setServices(response.data);
-        // }
+      
       } catch (error) {
         console.error("Failed to fetch services:", error);
       }
@@ -34,18 +36,14 @@ const HomeViborg = () => {
     fetchServices();
     }, []);
 
-  console.log("Services state:", services);
+    
 
   
      const createMarkup = (htmlString) => {
       return { __html: htmlString };
     };
 
-    const handleSeeAllServicesClick = () => {
-    //Skift tilstand for at vise/skjule alle tjenester
-    setShowAllServices(!showAllServices);
-  };
-
+ 
 
 
   
@@ -53,6 +51,7 @@ const HomeViborg = () => {
   return (
     
     <div>
+      
       { isLoading && <Loader/>} 
 
       { error && <h2 className='text-2xl text-red-600'>Error ...</h2>}
@@ -64,6 +63,8 @@ const HomeViborg = () => {
           </h1>
           <div className='max-w-screen-sm mx-auto'>
           {data && <div dangerouslySetInnerHTML={createMarkup(data.content)}  className='pb-10'/>}
+
+
 
           <Link to="/adminedit/" className='btn mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>Se Alle Ydelser</Link>
 

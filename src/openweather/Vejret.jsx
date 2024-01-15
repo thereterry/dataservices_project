@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import useRequestData from '../hooks/useRequestData';
 import Loader from '../components/Loader';
 import Error from '../components/Error';
