@@ -12,7 +12,7 @@ const Navbar = () => {
 
                 <ul className='flex gap-x-4'>
                     <li>
-                    <NavLink to="/" exact className='text-white hover:text-gray-200 py-2 px-4 rounded font-semibold'> 
+                    <NavLink to="/" className='text-white hover:text-gray-200 py-2 px-4 rounded font-semibold'> 
                     </NavLink>
                     </li>
                     <li>
@@ -72,7 +72,7 @@ const Navbar = () => {
                     </li>
                  
                     <li>    
-                         <NavLink to="/news"  className="hover:text-gray-200">Energidata
+                         <NavLink to="/energydata"  className="hover:text-gray-200">Energidata
                          </NavLink>
                     </li>
                 

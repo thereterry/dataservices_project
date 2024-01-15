@@ -28,7 +28,7 @@ const Dawa = () => {
 
   return (
     <div>
-      <h1>DAWA</h1>
+      <h1>DAWA og Leaflet map</h1>
 
       { isLoading && <Loader/>}
 

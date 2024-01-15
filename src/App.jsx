@@ -12,8 +12,8 @@ import HomeAdmin from './views/ADMIN/HomeAdmin'
 import News from './views/News';
 
 import Vejret from './openweather/vejret';
-import Nyheder from './news/Nyheder';
-import Energidata from './energydata/Energidata';
+import Everything from './news/Everything';
+import EnergyData from './energydata/EnergyData';
 
 import HomeViborg from './viborghaveservice/HomeViborg';
 import AdminEdit from './viborghaveservice/AdminEdit';
@@ -41,7 +41,7 @@ function App () {
           <Route index element={ <Home /> } />
           <Route path="about" element={ <About /> } />
           <Route path="contact" element={ <Contact /> } />
-          <Route path="news" element={ <News /> } />
+          {/* <Route path="news" element={ <News /> } /> */}
           <Route path="login" element={ <Login /> } />
           <Route path="*" element={ <NoMatch /> } />
         </Route>
@@ -61,10 +61,10 @@ function App () {
      <Route path="dawa" element={<Dawa />} />
     
         {/* ---------------- NYHEDER---------------- */}
-        <Route path="news" element={<Nyheder/>} />
+        <Route path="news" element={<Everything/>} />
 
           {/* ---------------- ENERGI-DATA---------------- */}
-          <Route path="energydata" element={<Energidata/>} />
+          <Route path="energydata" element={<EnergyData/>} />
 
 
     

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import useRequestData from '../hooks/useRequestData';
 import Loader from '../components/Loader';
 import Error from '../components/Error';
@@ -18,6 +18,7 @@ const Vejret = () => {
   return (
     <div>
       <h1>Vejret-</h1>
+
       { isLoading && <Loader/>}
 
       { error && <h2>Error ...</h2>}
