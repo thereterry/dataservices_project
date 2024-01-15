@@ -65,7 +65,7 @@ const HomeViborg = () => {
           <div className='max-w-screen-sm mx-auto'>
           {data && <div dangerouslySetInnerHTML={createMarkup(data.content)}  className='pb-10'/>}
 
-          <Link to="/adminedit/" className='btn mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Se Alle Ydelser</Link>
+          <Link to="/adminedit/" className='btn mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>Se Alle Ydelser</Link>
 
           </div>
          

@@ -4,19 +4,17 @@ import Loader from '../components/Loader'
 import Error from '../components/Error'
 
 
-
-
-
-
 const ReviewsViborg = () => {
 
   const [ testimonials, setTestimonials ] = useState()
+
+
+  const { data, isLoading, error, makeRequest }   = useRequestData();
 
   useEffect(()=> {
     makeRequest("http://localhost:5023/reviews");
   },[])
 
-  const { data, isLoading, error, makeRequest }   = useRequestData();
 
 
   const createMarkup = (htmlString) => {
@@ -31,13 +29,22 @@ const ReviewsViborg = () => {
   };
 
   return (
-    <div style={backgroundStyle}>
-      <h1>Kundeudtalelser</h1>
+    <div>
+      <h1  className='text-4xl mb-10 font-semi-bold text-center py-40'>Kundeudtalelser</h1>
+    <div>
+      <figure>
+        <a href="/">
+          <img src={"http://localhost:5023/images"}alt="" />
+        </a>
+      </figure>
+    </div>
+      
+
    
       {
             data && data.map(review => 
                 
-             <div>
+             <div className='mySlides fade'>
               <p>{review.author}</p>
               <p>{review.content}</p>
              </div>
