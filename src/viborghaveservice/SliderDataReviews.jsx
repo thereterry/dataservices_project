@@ -41,6 +41,11 @@ const SliderDataReviews = () => {
       
       }
 
+      const createMarkup = (htmlString) => {
+        return { __html: htmlString };
+      };
+  
+
     
   return (
     <div>

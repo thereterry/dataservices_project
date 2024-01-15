@@ -22,19 +22,19 @@ const ReviewsViborg = () => {
   };
 
   const backgroundStyle = {
-    backgroundImage: `url('/testimonials-bg.jpg')`, // Assuming the image is in the `public` folder
-    backgroundSize: 'cover', // This will ensure that your background covers the whole div
+    backgroundImage: `url('/testimonials-bg.jpg')`, 
+    backgroundSize: 'cover', 
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center center'
   };
 
   return (
     <div>
-      <h1  className='text-4xl mb-10 font-semi-bold text-center py-40'>Kundeudtalelser</h1>
+      <h1 className='text-4xl mb-10 font-semi-bold text-center py-40'>Kundeudtalelser</h1>
     <div>
       <figure>
         <a href="/">
-          <img src={"http://localhost:5023/images"}alt="" />
+          <img src={"http://localhost:5023/images/" }alt="" />
         </a>
       </figure>
     </div>
@@ -44,9 +44,10 @@ const ReviewsViborg = () => {
       {
             data && data.map(review => 
                 
-             <div className='mySlides fade'>
-              <p>{review.author}</p>
-              <p>{review.content}</p>
+             <div>
+              <div className='text-s mb-10 font-semi-bold text-center' dangerouslySetInnerHTML={createMarkup(review.content)} />
+              <p className='text-s mb-10 font-semi-bold text-center'>-{review.author}</p>
+           
              </div>
             )
           }
@@ -57,7 +58,7 @@ const ReviewsViborg = () => {
       { error && <h2>Error ...</h2>}
 
 
-      {data && <div dangerouslySetInnerHTML={createMarkup(data.content)} />}
+      {data && <div dangerouslySetInnerHTML={createMarkup(data.content)}  className='pb-10'/>}
 
   
     </div>
