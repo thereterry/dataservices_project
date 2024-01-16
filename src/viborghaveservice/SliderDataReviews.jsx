@@ -49,20 +49,20 @@ const SliderDataReviews = () => {
     
   return (
     <div>
-      <h1>Admin af sliderdata/reviews</h1>
+      <h1 className="text-2xl font-bold mb-4">Admin af sliderdata/reviews</h1>
         { error ||  errorPUT && <Error/>}
         { isLoading ||  isLoadingPUT && <Loader/> }
 
-        { dataDelete && <h2>Du har netop slettet en Reviews</h2> }
+        { dataDelete && <h2 className="text-lg text-green-600">Du har netop slettet en Reviews</h2> }
 
-
-        <table className="table table-zebra">
-        <thead>
+      <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
+      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <td>ID</td>
-            <td>AUTHOR</td>
-            <td>RET</td>
-            <td>SLET</td>
+            <td scope="col" className="py-3 px-6">ID</td>
+            <td scope="col" className="py-3 px-6">AUTHOR</td>
+            <td scope="col" className="py-3 px-6">RET</td>
+            <td scope="col" className="py-3 px-6">SLET</td>
              <td><Link to={"/postcreate/"} className="btn">Create</Link></td> 
           </tr>
         </thead>
@@ -70,25 +70,27 @@ const SliderDataReviews = () => {
         <tbody>
             {
             data && data.map(review =>       
-                <div>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                     <br />
-                    <td>{review.author}</td>
-                    <td>{review.content}</td>     
+                    <td className="py-4 px-6">{review.author}</td>
+                    <td className="py-4 px-6">{review.content}</td>     
                     <td>
                     <Link to={"/postedit/" + review.id} className="btn">
                         <FaEdit size= "2em" color= "darkgreen"  />
                     </Link>
                 </td>
-                    <td>
-                        <button onClick={() => handleDelete(p.id, p.title)}>
+                    <td className="py-4 px-6">
+                        <button onClick={() => handleDelete(review.id, review.title)}>
                         <FaTrash size="2em" color="darkred" className="cursor-pointer"/>
                         </button>
                     </td>     
-                </div>
+                </tr>
         )}
             
             </tbody>
         </table>
+      </div>
+        
        
 
               
